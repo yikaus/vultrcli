@@ -15,6 +15,7 @@ Requirements
 -------------
 
 1. Python 2.6 +
+2. python requests and argparse package if you want to directly run
 
 
 Direct RUN
@@ -25,7 +26,7 @@ chmod +x vucli.py
 ./vucli.py
 
 
-Installation
+Installation (all dependency will be installed)
 ------------
 
 $sudo pip install vucli
@@ -37,6 +38,10 @@ To Use
 
 Interactive mode
 ------------
+
+vucli
+
+OR
 
 ./vucli.py
 
