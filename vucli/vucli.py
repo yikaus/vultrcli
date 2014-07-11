@@ -287,73 +287,78 @@ class MyArgumentParser(argparse.ArgumentParser):
         raise Exception(message)
 		
 def main():
-	#print "----"
-	args = None
-	try:
-		parser = MyArgumentParser(prog='vucli',add_help=False)
-		parser.add_argument('-h', action='store_true', dest='help')
-		parser.add_argument('command', nargs='?', choices=cmds,)
-		parser.add_argument('-k', '--key', dest = 'userkey' ,required=False)
-		parser.add_argument('-id', '--subid', dest = 'subid',required=False)
-		parser.add_argument('-d', '--dc', dest = 'dcid',required=False)
-		parser.add_argument('-p', '--plan', dest = 'planid',required=False)
-		parser.add_argument('-os', '--os', dest = 'osid',required=False)
+	try :
+		#print "----"
+		args = None
+		try:
+			parser = MyArgumentParser(prog='vucli',add_help=False)
+			parser.add_argument('-h', action='store_true', dest='help')
+			parser.add_argument('command', nargs='?', choices=cmds,)
+			parser.add_argument('-k', '--key', dest = 'userkey' ,required=False)
+			parser.add_argument('-id', '--subid', dest = 'subid',required=False)
+			parser.add_argument('-d', '--dc', dest = 'dcid',required=False)
+			parser.add_argument('-p', '--plan', dest = 'planid',required=False)
+			parser.add_argument('-os', '--os', dest = 'osid',required=False)
 
-		args = parser.parse_args()
+			args = parser.parse_args()
 
 
-	except SystemExit:
-		pass
-	except  Exception ,e:
-		help()
-		'''
-		parser.print_help()
+		except SystemExit:
+			pass
+		except  Exception ,e:
+			help()
+			'''
+			parser.print_help()
 
-		print
-		print "Arguments Error"
-		print "---------------"
-		print e
-		print
-		'''
-		sys.exit()
+			print
+			print "Arguments Error"
+			print "---------------"
+			print e
+			print
+			'''
+			sys.exit()
 
-	if args.help:
-		help()
-		sys.exit()
-	if not args :  
-		# interactive mode
-		interactive()
+		if args.help:
+			help()
+			sys.exit()
+		if not args :  
+			# interactive mode
+			interactive()
+			
+		if args.userkey :
+			global userkey 
+			userkey = args.userkey
+		elif args.command in ['snapshotlist','serverlist','reboot','halt','start','destroy','reinstall','create']:
+			print
+			print "please provide apikey with -k option"
+			print
+			sys.exit()
+			
+		if args.command :
 		
-	if args.userkey :
-		global userkey 
-		userkey = args.userkey
-	elif args.command in ['snapshotlist','serverlist','reboot','halt','start','destroy','reinstall','create']:
+			
+			if args.command in ['planlist', 'regionlist','oslist','snapshotlist','serverlist']:
+				runcmd(args.command,[])
+			elif args.command in ['reboot','halt','start','destroy','reinstall']:
+				if not args.subid :
+					print
+					print "please provide subid with -id option"
+					print
+					sys.exit()
+				runcmd(args.command,[args.subid])
+			elif args.command in ['create']:
+				if not args.dcid and not args.osid and not args.planid : 
+					print
+					print "To create server , please also provide dcid with -d option , planid with -p option and osid with -os option"
+					print
+					sys.exit()
+				runcmd(args.command,[args.dcid,args.planid,args.osid])
+		else:
+			interactive()
+	except (KeyboardInterrupt,EOFError) as e:
 		print
-		print "please provide apikey with -k option"
-		print
-		sys.exit()
-		
-	if args.command :
+		sys.exit(0)
 	
-		
-		if args.command in ['planlist', 'regionlist','oslist','snapshotlist','serverlist']:
-			runcmd(args.command,[])
-		elif args.command in ['reboot','halt','start','destroy','reinstall']:
-			if not args.subid :
-				print
-				print "please provide subid with -id option"
-				print
-				sys.exit()
-			runcmd(args.command,[args.subid])
-		elif args.command in ['create']:
-			if not args.dcid and not args.osid and not args.planid : 
-				print
-				print "To create server , please also provide dcid with -d option , planid with -p option and osid with -os option"
-				print
-				sys.exit()
-			runcmd(args.command,[args.dcid,args.planid,args.osid])
-	else:
-		interactive()
 
 
 def help():
@@ -389,9 +394,6 @@ def help():
 	
 
 if __name__ == "__main__":
-	try :
-		main()
-	except (KeyboardInterrupt,EOFError) as e:
-		print
-		sys.exit(0)
+	main()
+
 
