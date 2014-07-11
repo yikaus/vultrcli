@@ -19,6 +19,8 @@ Requirements
 
 Direct RUN
 -------------
+git clone https://github.com/yikaus/vultrcli
+cd vultrcli/vucli
 chmod +x vucli.py
 ./vucli.py
 
@@ -29,6 +31,9 @@ Installation
 $sudo pip install vucli
 
 $vucli
+
+To Use
+------------
 
 Interactive mode
 ------------
