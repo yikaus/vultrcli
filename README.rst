@@ -35,7 +35,12 @@ Interactive mode
 
 ./vucli.py
 
-
+##########################
+#     Vultr Cloud CLI    #
+#                        #
+#            v1          #
+#                        #
+##########################
 
 Type help to load help page .
 
