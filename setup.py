@@ -6,6 +6,7 @@ setup(
     name = "vucli",
     version = "0.0.1",
     packages = find_packages(),
+	
     
     include_package_data = True,
     package_data = {
@@ -29,7 +30,7 @@ setup(
 
     entry_points = {
         'console_scripts': [
-            'vucli = vucli:main',
+            'vucli = vucli.vucli:main',
 	    
         ],
     }
