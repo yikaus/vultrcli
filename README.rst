@@ -1,8 +1,9 @@
 vucli 0.0.1 (Vultr cloud server CLI tool)
 ======================
 
-vucli is a CLI tool to manage Vultr VPS 
-vucli invoked Vultr public REST service , see details https://www.vultr.com/api/
+vucli is a CLI tool to manage Vultr VPS ,it invoked Vultr public REST service , see details https://www.vultr.com/api/
+
+all functions are in single py file , you can also directly copy the code and run it . 
 
 .. contents::
 
