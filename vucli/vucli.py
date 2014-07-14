@@ -19,7 +19,7 @@ import sys
 import os
 import argparse
 #import simplejson as json
-import readline,glob
+import readline
 
 API_BASE_URL = "https://api.vultr.com/v1/"
 REGIONS_AVAILABILITY_URL = ""
