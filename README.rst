@@ -1,4 +1,4 @@
-vucli 0.0.1 (Vultr cloud server CLI tool)
+vucli 0.0.2 (Vultr cloud server CLI tool)
 ======================
 
 vucli is a CLI tool to manage Vultr VPS 
@@ -10,6 +10,8 @@ Changes
 -------
 
 **0.0.1**: Initial drop
+
+**0.0.2**: Add start script & snapshot management ,  create server with startscript or snapshot ,showing current_charge in serverlist
 
 Requirements
 -------------
@@ -65,6 +67,8 @@ Commands:
      regionlist        list all available regions
      oslist            list all operating system images
      snapshotlist      list all snapshots
+     newsnapshot       create a snapshot with subid
+     snapshotdestroy   delete a snapshot
      serverlist        list all servers
      reboot            restart server by server id
      halt              hard stop server by server id
@@ -72,9 +76,13 @@ Commands:
      destroy           destroy server by server id
      reinstall         reinstall server by server id
      create            create new server
+     scriptlist        list all start script
+     scriptdestroy     delete particular start script
+     newscript         create new server
+     create            create start script
      changekey         reset API key (only worked in interactive mode)
      quit              quit interactive mode (only worked in interactive mode)
-vultr_cli>>
+	 
 vultr_cli>>
 vultr_cli>>regionlist
 country    state   DCID          name       continent
@@ -125,6 +133,8 @@ Commands:
      regionlist        list all available regions
      oslist            list all operating system images
      snapshotlist      list all snapshots
+     newsnapshot       create a snapshot with subid
+     snapshotdestroy   delete a snapshot
      serverlist        list all servers
      reboot            restart server by server id
      halt              hard stop server by server id
@@ -132,6 +142,10 @@ Commands:
      destroy           destroy server by server id
      reinstall         reinstall server by server id
      create            create new server
+     scriptlist        list all start script
+     scriptdestroy     delete particular start script
+     newscript         create new server
+     create            create start script
      changekey         reset API key (only worked in interactive mode)
      quit              quit interactive mode (only worked in interactive mode)
 Options:
@@ -140,8 +154,22 @@ Options:
      -d  <DCID>        provide datacenter DCID
      -p  <PLANID>      provide PLANID
      -os <OSID>        provide OS image ID
+     -f <SCRIPTPATH>   provide script file path
+     -st <SCRIPTID>    provide script id
+     -sn <SCRIPTNAME>  provide script name
+     -ss <SUBID>       provide server id to create a snapshot
+     -sd <SNAPDESC>    provide snapshot description
 
-Examples:	 
+Examples:
+  create instance with OSID 128 at DCID 5 and planid 29 ,script id 245
+      vucli create -k <yourkey> -d 5 -p 29 -os 128 -st 245
+
+  create instance with SNAPSHOTID 53bdd6e0d6414 at DCID 5 and planid 29
+      vucli create -k <yourkey> -d 5 -p 29 -ss 53bdd6e0d6414
+      provide OS image ID
+
+
+Usage example:	  
 	 
 ./vucli.py oslist
 
