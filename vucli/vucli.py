@@ -19,7 +19,10 @@ import sys
 import os
 import argparse
 #import simplejson as json
-import readline
+try:
+  import readline
+except ImportError:
+  import pyreadline as readline
 
 API_BASE_URL = "https://api.vultr.com/v1/"
 REGIONS_AVAILABILITY_URL = ""
