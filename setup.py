@@ -24,6 +24,7 @@ setup(
     license = "BSD",
     keywords = "cloud CLI REST admin administrator node vultr",
     install_requires=["requests","argparse"],
+    extras_require={':sys_platform == "win32"': ['pyreadline']},
     url = "https://github.com/yikaus/vultrcli",   # project home page, if any
 
     # could also include long_description, download_url, classifiers, etc.
