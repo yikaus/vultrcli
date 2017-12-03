@@ -4,10 +4,10 @@ from setuptools import setup, find_packages
 
 setup(
     name = "vucli",
-    version = "0.0.2",
+    version = "0.0.3",
     packages = find_packages(),
-	
-    
+
+
     include_package_data = True,
     package_data = {
         # If any package contains *.txt or *.rst files, include them:
@@ -19,7 +19,6 @@ setup(
 
     # metadata for upload to PyPI
     author = "Kevin Yi",
-    author_email = "yikaus A gmail ",
     description = "Vultr VPS cloud CLI console",
     license = "BSD",
     keywords = "cloud CLI REST admin administrator node vultr",
@@ -32,7 +31,7 @@ setup(
     entry_points = {
         'console_scripts': [
             'vucli = vucli.vucli:main',
-	    
+
         ],
     }
 )

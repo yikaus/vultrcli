@@ -1,9 +1,9 @@
-vucli 0.0.2 (Vultr cloud server CLI tool)
+vucli 0.0.3 (Vultr cloud server CLI tool)
 ======================
 
 vucli is a CLI tool to manage Vultr VPS ,it invoked Vultr public REST service , see details https://www.vultr.com/api/
 
-all functions are in single py file , you can also directly copy the code and run it . 
+all functions are in single py file , you can also directly copy the code and run it .
 
 
 .. contents::
@@ -14,6 +14,8 @@ Changes
 **0.0.1**: Initial drop
 
 **0.0.2**: Add start script & snapshot management ,  create server with startscript or snapshot ,showing current_charge in serverlist
+
+**0.0.3** Added Windows support - install pyreadline when on Windows , Thanks to PieterScheffers
 
 Requirements
 -------------
@@ -84,7 +86,7 @@ Commands:
      create            create start script
      changekey         reset API key (only worked in interactive mode)
      quit              quit interactive mode (only worked in interactive mode)
-	 
+
 vultr_cli>>
 vultr_cli>>regionlist
 country    state   DCID          name       continent
@@ -171,8 +173,8 @@ Examples:
       provide OS image ID
 
 
-Usage example:	  
-	 
+Usage example:
+
 ./vucli.py oslist
 
 OSID    arch                      name     family
